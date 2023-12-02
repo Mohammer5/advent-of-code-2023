@@ -1,10 +1,6 @@
 (ns advent-of-code-2023.day1.exercise2
-  (:require [clojure.string :as string]))
-
-(defn char-to-int [character]
-  (try
-    (Integer/parseInt (str character))
-    (catch Exception e nil)))
+  (:require [clojure.string :as string]
+            [advent-of-code-2023.lib.string-number-conversions :refer [char-to-int]]))
 
 (def word-number-mapping {"one"   1
                           "two"   2
@@ -17,7 +13,7 @@
                           "nine"  9})
 
 (defn determine-next-char-digit [characters]
-  (let [first-char (first characters) ;(subs character 0 1))
+  (let [first-char (first characters)
         char-as-int (char-to-int first-char)]
     (if (number? char-as-int)
       char-as-int
@@ -52,13 +48,13 @@
          (first-and-last-digit)
          (as-two-digit-number)))
 
-(defn parse-input [input]
+(defn exercise2 [input]
   (->> input
       (mapv extract-digit-from-line)
       (reduce +)))
 
 (defn -main []
-  (println (parse-input ["twovgtprdzcjjzkq3ffsbcblnpq"
+  (println (exercise2 ["twovgtprdzcjjzkq3ffsbcblnpq"
                          "two8sixbmrmqzrrb1seven"
                          "9964pfxmmr474"
                          "46one"

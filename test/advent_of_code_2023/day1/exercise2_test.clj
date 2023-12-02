@@ -1,6 +1,6 @@
 (ns advent-of-code-2023.day1.exercise2-test
   (:require [clojure.test :refer :all]
-            [advent-of-code-2023.day1.exercise2 :refer [parse-input]]))
+            [advent-of-code-2023.day1.exercise2 :refer [exercise2]]))
 
 (def example-input ["two1nine"
                     "eightwothree"
@@ -12,6 +12,6 @@
 
 (deftest example
   (testing "Example input"
-    (let [actual   (parse-input example-input)
+    (let [actual   (exercise2 example-input)
           expected 281]
       (is (= actual expected)))))

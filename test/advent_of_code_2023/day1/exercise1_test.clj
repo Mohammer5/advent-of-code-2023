@@ -1,17 +1,14 @@
 (ns advent-of-code-2023.day1.exercise1-test
   (:require [clojure.test :refer :all]
-            [advent-of-code-2023.day1.exercise2 :refer [parse-input]]))
+            [advent-of-code-2023.day1.exercise1 :refer [exercise1]]))
 
-(def example-input ["two1nine"
-                    "eightwothree"
-                    "abcone2threexyz"
-                    "xtwone3four"
-                    "4nineeightseven2"
-                    "zoneight234"
-                    "7pqrstsixteen"])
+(def example-input ["1abc2"
+                    "pqr3stu8vwx"
+                    "a1b2c3d4e5f"
+                    "treb7uchet"])
 
 (deftest example
   (testing "Example input"
-    (let [actual   (parse-input example-input)
-          expected 281]
+    (let [actual   (exercise1 example-input)
+          expected 142]
       (is (= actual expected)))))

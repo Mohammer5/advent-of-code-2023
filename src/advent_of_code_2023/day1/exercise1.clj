@@ -1,9 +1,5 @@
-(ns advent-of-code-2023.day1.exercise1)
-
-(defn char-to-int [character]
-  (try
-    (Integer/parseInt (str character))
-    (catch Exception e nil)))
+(ns advent-of-code-2023.day1.exercise1
+  (:require [advent-of-code-2023.lib.string-number-conversions :refer [char-to-int]]))
 
 (defn extract-digits [characters]
   (->> characters
@@ -25,13 +21,13 @@
          (first-and-last-digit)
          (as-two-digit-number)))
 
-(defn parse-input [input]
+(defn exercise1 [input]
   (->> input
       (mapv extract-digit-from-line)
       (reduce +)))
 
 (defn -main []
-  (println (parse-input ["twovgtprdzcjjzkq3ffsbcblnpq"
+  (println (exercise1 ["twovgtprdzcjjzkq3ffsbcblnpq"
                          "two8sixbmrmqzrrb1seven"
                          "9964pfxmmr474"
                          "46one"

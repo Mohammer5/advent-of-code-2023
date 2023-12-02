@@ -8,7 +8,11 @@
   :aliases {"d1e1"  ["run" "-m" "advent-of-code-2023.day1.exercise1"]
             "d1e1e" ["test" ":only" "advent-of-code-2023.day1.exercise1-test"]
             "d1e2"  ["run" "-m" "advent-of-code-2023.day1.exercise2"]
-            "d1e2e" ["test" ":only" "advent-of-code-2023.day1.exercise2-test"]}
+            "d1e2e" ["test" ":only" "advent-of-code-2023.day1.exercise2-test"]
+            "d2e1"  ["run" "-m" "advent-of-code-2023.day2.exercise1"]
+            "d2e1e" ["test" ":only" "advent-of-code-2023.day2.exercise1-test"]
+            "d2e2"  ["run" "-m" "advent-of-code-2023.day2.exercise2"]
+            "d2e2e" ["test" ":only" "advent-of-code-2023.day2.exercise2-test"]}
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all
                        :jvm-opts ["-Dclojure.compiler.direct-linking=true"]}})
