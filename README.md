@@ -1,44 +1,25 @@
 # advent-of-code-2023
 
-FIXME: description
+This is my attempt at solving the Advent of Code 2023 puzzles with clojure and
+leiningen. These two are the only two requirements to run the code (plus their
+dependencies).
 
-## Installation
+Each puzzle can be run with the following command `lein d[n]e[m]` where `n` is
+the day and `m` is the exercise. The first day has to exercises, so the
+following two commands work:
 
-Download from http://example.com/FIXME.
+```
+lein d1e1 # puzzle for day 1 exercise 1
+lein d1e2 # puzzle for day 1 exercise 2
+```
 
-## Usage
+The examples were implemented with tests. They can be run with the same
+commands for running an actual exercise with an additional `e` at the end of
+the command:
 
-FIXME: explanation
-
-    $ java -jar advent-of-code-2023-0.1.0-standalone.jar [args]
-
-## Options
-
-FIXME: listing of options this app accepts.
-
-## Examples
-
-...
-
-### Bugs
-
-...
-
-### Any Other Sections
-### That You Think
-### Might be Useful
-
-## License
-
-Copyright © 2023 FIXME
-
-This program and the accompanying materials are made available under the
-terms of the Eclipse Public License 2.0 which is available at
-http://www.eclipse.org/legal/epl-2.0.
-
-This Source Code may also be made available under the following Secondary
-Licenses when the conditions for such availability set forth in the Eclipse
-Public License, v. 2.0 are satisfied: GNU General Public License as published by
-the Free Software Foundation, either version 2 of the License, or (at your
-option) any later version, with the GNU Classpath Exception which is available
-at https://www.gnu.org/software/classpath/license.html.
+```sh
+lein d1e1e # example for day 1 exercise 1
+lein d1e2e # example for day 1 exercise 2
+lein d2e1e # example for day 2 exercise 1
+lein d2e2e # example for day 2 exercise 2
+```
