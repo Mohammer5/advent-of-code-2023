@@ -1,42 +1,50 @@
-(ns advent-of-code-2023.day3.exercise1
+(ns advent-of-code-2023.day3.exercise2
   (:require [clojure.pprint :refer [pprint]]
             [advent-of-code-2023.day3.common :refer [parse-engine-data]]))
 
-(defn get-relevant-symbols [symbols row start end column-count row-count]
-  (let [min-row (max 0 (dec row))
-        max-row (min row-count (inc row))
-        min-column (max 0 (dec start))
-        max-column (min column-count (inc end))]
-    (filterv
-      (fn [{symbol-row :row symbol-column :column}]
-        (and
-          (>= symbol-row min-row)
-          (<= symbol-row max-row)
-          (>= symbol-column min-column)
-          (<= symbol-column max-column)))
-      symbols)))
+(defn adjacent? [star number row-count column-count]
+  (let [{column   :column
+         star-row :row} star
+        {number-row   :row
+         number-x-start :start
+         number-x-end   :end} number
+        star-x-start (dec column)
+        star-x-end (inc column)
+        star-y-start (dec star-row)
+        star-y-end (inc star-row)]
+    (and (or (and (> number-x-end star-x-end) (< number-x-start star-x-start)) ; starting before and ending after star's box
+             (and (<= number-x-end star-x-end) (>= number-x-end star-x-start)) ; end included
+             (and (>= number-x-start star-x-start) (<= number-x-start star-x-end))) ;start included
+         (or (and (> number-row star-y-end) (< number-row star-y-start)) ; starting before and ending after star's box
+             (and (<= number-row star-y-end) (>= number-row star-y-start)) ; end included
+             (and (>= number-row star-y-start) (<= number-row star-y-end)))))) ;start included
 
-(defn get-numbers-with-symbols [{:keys [numbers symbols]} column-count row-count]
-  (filterv
-    (fn [number-data]
-      (let [{:keys [row start end number]} number-data
-            relevant-symbols (get-relevant-symbols symbols row start end column-count row-count)
-            has-symbols (not (empty? relevant-symbols))]
-        has-symbols))
-    numbers))
+(defn find-adjacent-numbers [star numbers row-count column-count]
+  (loop [adj-numbers []
+         numbers-to-check numbers]
+    (if (= 0 (count numbers-to-check))
+      adj-numbers
+      (recur
+        (let [next-number (get numbers-to-check 0)]
+          (if (adjacent? star next-number row-count column-count)
+            (conj adj-numbers next-number)
+            adj-numbers))
+        (subvec numbers-to-check 1)))))
 
-(defn exercise1 [schematic]
+(defn exercise2 [schematic]
   (let [row-count (count schematic)
         column-count (count (get schematic 0))
         engine-data (parse-engine-data schematic)
-        numbers-with-symbols (get-numbers-with-symbols engine-data column-count row-count)]
-    (->> numbers-with-symbols
-      (mapv #(:number %))
-      (reduce +)
-      )))
+        stars (filterv #(= \* (:char %)) (:symbols engine-data))
+        adjacent-star-numbers (mapv #(find-adjacent-numbers % (:numbers engine-data) row-count column-count) stars)]
+    (->> adjacent-star-numbers
+         (mapv #(mapv (fn [number] (:number number)) %))
+         (filterv #(= 2 (count %)))
+         (mapv #(reduce * %))
+         (reduce +))))
 
 (defn -main []
-  (pprint (exercise1 ["...317..........214.....................................751.................................630...479..205....41.993............416........."
+  (pprint (exercise2 ["...317..........214.....................................751.................................630...479..205....41.993............416........."
                       "...*....813........%....572........%...629.154......518....*....365..................-.......*.......#.....................422...........661"
                       "269.......*...58...........=......264.....*..........*......937.-...........235...303.........848..............195.....154*.........144.-..."
                       "........476..@...162.855................$....288...821..............107.....-...........290......../..301.........=...........135..*........"
