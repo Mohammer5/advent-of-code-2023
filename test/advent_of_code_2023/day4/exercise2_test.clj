@@ -1,6 +1,6 @@
-(ns advent-of-code-2023.day4.exercise1-test
+(ns advent-of-code-2023.day4.exercise2-test
   (:require [clojure.test :refer :all]
-            [advent-of-code-2023.day4.exercise1 :refer [exercise1]]))
+            [advent-of-code-2023.day4.exercise2 :refer [exercise2]]))
 
 (def example-input ["Card 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53"
                     "Card 2: 13 32 20 16 61 | 61 30 68 82 17 32 24 19"
@@ -11,6 +11,6 @@
 
 (deftest example
   (testing "Example input"
-    (let [actual   (exercise1 example-input)
-          expected 13]
+    (let [actual   (exercise2 example-input)
+          expected 30]
       (is (= actual expected)))))
