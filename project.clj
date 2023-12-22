@@ -20,7 +20,11 @@
             "d4e1"  ["run" "-m" "advent-of-code-2023.day4.exercise1"]
             "d4e1e" ["test" ":only" "advent-of-code-2023.day4.exercise1-test"]
             "d4e2"  ["run" "-m" "advent-of-code-2023.day4.exercise2"]
-            "d4e2e" ["test" ":only" "advent-of-code-2023.day4.exercise2-test"]}
+            "d4e2e" ["test" ":only" "advent-of-code-2023.day4.exercise2-test"]
+            "d5e1"  ["run" "-m" "advent-of-code-2023.day5.exercise1"]
+            "d5e1e" ["test" ":only" "advent-of-code-2023.day5.exercise1-test"]
+            "d5e2"  ["run" "-m" "advent-of-code-2023.day5.exercise2"]
+            "d5e2e" ["test" ":only" "advent-of-code-2023.day5.exercise2-test"]}
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all
                        :jvm-opts ["-Dclojure.compiler.direct-linking=true"]}})
